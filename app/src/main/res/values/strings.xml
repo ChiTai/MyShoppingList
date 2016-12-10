@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">MyShoppingList</string>
+
+    <!-- Title -->
+    <string name="login_title">Login</string>
+    <string name="register_title">Register</string>
+
+    <!-- Login/Subscribe -->
+    <string name="name">Name</string>
+    <string name="firstName">Firstname</string>
+    <string name="email">Email</string>
+    <string name="pwd">Password</string>
+    <string name="btnRegister">Register</string>
+    <string name="btnLogin">Login</string>
+    <string name="enterName">Enter your name</string>
+    <string name="enterFirstName">Enter your firstname</string>
+    <string name="enterEmail">Enter your email</string>
+    <string name="enterPassword">Enter a password</string>
+
+
 </resources>
