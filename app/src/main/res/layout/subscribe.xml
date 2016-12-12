@@ -1,20 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:paddingLeft="@dimen/body_padding"
+    android:paddingRight="@dimen/body_padding">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="5dip" >
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/logo" />
 
         <!-- View Title Label -->
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dip"
-            android:text="@string/register_title"
+            android:text="@string/register"
+            android:textColor="@color/green"
+            android:textAllCaps="true"
             android:textSize="25sp"
             android:textStyle="bold" />
 
@@ -22,6 +32,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/label_margin_bottom"
             android:text="@string/name" />
 
         <!-- Name TextField -->
@@ -29,12 +40,14 @@
             android:id="@+id/registerName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enterName"/>
+            android:background="@color/light_grey"
+            android:height="@dimen/input_height" />
 
         <!-- FirstName Label -->
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_margin_top"
             android:text="@string/firstName" />
 
         <!-- Firstname TextField -->
@@ -42,12 +55,14 @@
             android:id="@+id/registerFirstName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enterFirstName"/>
+            android:background="@color/light_grey"
+            android:height="@dimen/input_height"/>
 
         <!-- Email Label -->
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/form_text_margin_top"
             android:text="@string/email" />
 
         <!-- Email TextField -->
@@ -55,14 +70,14 @@
             android:id="@+id/registerEmail"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enterEmail"
-            android:inputType="textEmailAddress" />
+            android:background="@color/light_grey"
+            android:height="@dimen/input_height"/>
 
         <!-- Password Label -->
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dip"
+            android:layout_marginTop="@dimen/form_text_margin_top"
             android:text="@string/pwd" />
 
         <!-- Password TextField -->
@@ -70,45 +85,33 @@
             android:id="@+id/registerPassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/enterPassword"
-            android:inputType="textPassword" />
-
-        <!-- Error message -->
-        <TextView
-            android:id="@+id/register_error"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:padding="10dip"
-            android:textColor="#e30000"
-            android:textStyle="bold" />
-
-        <ProgressBar
-            android:id="@+id/pgBarRegister"
-            style="?android:attr/progressBarStyleLarge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="22dp" />
+            android:background="@color/light_grey"
+            android:height="@dimen/input_height"
+            android:inputType="textPassword"
+            android:padding="8dp" />
 
         <Button
             android:id="@+id/btnRegister"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:background="#ff6347"
-            android:text="@string/btnRegister"
-            android:textColor="#fff" />
+            android:text="@string/register"
+            android:background="@drawable/radius_button"
+            android:textColor="@color/white"
+            android:layout_gravity="center_horizontal"
+            android:width="200dp" />
 
         <!-- Link to Login screen -->
-        <Button
-            android:id="@+id/btnLinkToLoginScreen"
-            android:layout_width="fill_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@null"
-            android:text="@string/btnLogin"
-            android:textColor="#228b22"
-            android:textStyle="bold" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/login_link_message"
+            android:id="@+id/login_link"
+            android:textColor="@color/green"
+            android:layout_marginTop="@dimen/form_text_margin_top"
+            android:layout_gravity="center_horizontal" />
+
     </LinearLayout>
 
 </ScrollView>

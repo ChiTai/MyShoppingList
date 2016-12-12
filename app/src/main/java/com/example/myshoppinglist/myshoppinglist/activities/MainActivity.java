@@ -1,6 +1,8 @@
 package com.example.myshoppinglist.myshoppinglist.activities;
 
+import android.app.ActionBar;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.example.myshoppinglist.myshoppinglist.R;
 import org.json.JSONObject;
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText firstname;
     private EditText email;
     private EditText password;
+    private TextView login;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +44,10 @@ public class MainActivity extends AppCompatActivity {
         firstname = (EditText) findViewById(R.id.registerFirstName);
         email = (EditText) findViewById(R.id.registerEmail);
         password = (EditText) findViewById(R.id.registerPassword);
+        login = (TextView) findViewById(R.id.login_link);
+
+        ActionBar actionBar = getActionBar();
+        actionBar.hide();
 
         Button registerButton = (Button) findViewById(R.id.btnRegister);
 
@@ -52,6 +60,14 @@ public class MainActivity extends AppCompatActivity {
                 final String registerPassword = password.getText().toString();
 
                 new AsyncRegister().execute(registerEmail, registerPassword, registerFirstName, registerName);
+            }
+        });
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent startLogin = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(startLogin);
             }
         });
     }

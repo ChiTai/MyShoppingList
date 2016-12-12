@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/view_action"
+        android:icon="@mipmap/ic_list"
+        android:title="@string/create_list"
+        android:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/create_action"
+        android:icon="@mipmap/ic_create"
+        android:title="@string/view_lists"
+        android:showAsAction="ifRoom" />
+
+</menu>
