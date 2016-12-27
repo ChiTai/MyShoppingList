@@ -1,105 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="@color/white"
-    android:paddingLeft="@dimen/body_padding"
-    android:paddingRight="@dimen/body_padding">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/red"
+    android:scaleType="centerCrop"
+    android:paddingLeft="@dimen/fifty"
+    android:paddingRight="@dimen/fifty">
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="40dp"
+        android:weightSum="1">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/logo" />
-
-        <!-- View Title Label -->
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dip"
-            android:text="@string/register"
-            android:textColor="@color/green"
-            android:textAllCaps="true"
-            android:textSize="25sp"
-            android:textStyle="bold" />
-
-        <!-- Name Label -->
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/label_margin_bottom"
-            android:text="@string/name" />
+            android:layout_width="138dp"
+            android:layout_height="57dp"
+            android:background="@drawable/logo"
+            android:layout_marginTop="@dimen/twenty"
+            android:layout_marginBottom="@dimen/fifty"
+            android:layout_gravity="center"
+            android:id="@+id/imageView" />
 
         <!-- Name TextField -->
         <EditText
             android:id="@+id/registerName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_grey"
+            android:background="@drawable/edittext_bottom_line"
+            android:paddingLeft="4dp"
+            android:hint="@string/name"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="30dp"
             android:height="@dimen/input_height" />
-
-        <!-- FirstName Label -->
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/form_text_margin_top"
-            android:text="@string/firstName" />
 
         <!-- Firstname TextField -->
         <EditText
             android:id="@+id/registerFirstName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_grey"
+            android:background="@drawable/edittext_bottom_line"
+            android:paddingLeft="4dp"
+            android:hint="@string/firstName"
+            android:layout_marginBottom="@dimen/thirty"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:height="@dimen/input_height"/>
-
-        <!-- Email Label -->
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/form_text_margin_top"
-            android:text="@string/email" />
 
         <!-- Email TextField -->
         <EditText
             android:id="@+id/registerEmail"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_grey"
+            android:background="@drawable/edittext_bottom_line"
+            android:paddingLeft="4dp"
+            android:hint="@string/email"
+            android:layout_marginBottom="@dimen/thirty"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
             android:height="@dimen/input_height"/>
 
-        <!-- Password Label -->
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/form_text_margin_top"
-            android:text="@string/pwd" />
-
-        <!-- Password TextField -->
+        <!-- Email TextField -->
         <EditText
             android:id="@+id/registerPassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_grey"
-            android:height="@dimen/input_height"
-            android:inputType="textPassword"
-            android:padding="8dp" />
+            android:background="@drawable/edittext_bottom_line"
+            android:padding="8dp"
+            android:fontFamily="sans-serif"
+            android:hint="@string/enterPassword"
+            android:layout_marginBottom="@dimen/fifty"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:inputType="textPassword"/>
 
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
             android:text="@string/register"
-            android:background="@drawable/radius_button"
+            android:background="@color/dark_red"
             android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:width="200dp" />
+            android:width="@dimen/submit_button_width" />
 
         <!-- Link to Login screen -->
         <TextView
@@ -108,8 +94,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/login_link_message"
             android:id="@+id/login_link"
-            android:textColor="@color/green"
-            android:layout_marginTop="@dimen/form_text_margin_top"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/thirty"
+            android:layout_marginBottom="@dimen/twenty"
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>

@@ -3,8 +3,8 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/white"
-    android:paddingLeft="@dimen/body_padding"
-    android:paddingRight="@dimen/body_padding">
+    android:paddingLeft="@dimen/fifty"
+    android:paddingRight="@dimen/fifty">
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -26,7 +26,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/label_margin_bottom"
+            android:layout_marginBottom="@dimen/thirty"
             android:text="@string/email" />
 
         <EditText
@@ -70,7 +70,6 @@
             android:text="@string/register_link_message"
             android:id="@+id/register_link"
             android:textColor="@color/green"
-            android:layout_marginTop="@dimen/form_text_margin_top"
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>
