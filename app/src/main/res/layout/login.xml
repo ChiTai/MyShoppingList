@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/white"
+    android:background="@color/red"
+    android:scaleType="centerCrop"
     android:paddingLeft="@dimen/fifty"
     android:paddingRight="@dimen/fifty">
 
@@ -10,66 +11,63 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="20dp" >
+        android:layout_gravity="center_vertical">
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dip"
-            android:text="@string/login"
-            android:textColor="@color/green"
-            android:textAllCaps="true"
-            android:textSize="25sp"
-            android:textStyle="bold" />
+        <ImageView
+            android:layout_width="138dp"
+            android:layout_height="57dp"
+            android:background="@drawable/logo"
+            android:layout_marginBottom="@dimen/fifty"
+            android:layout_gravity="center"
+            android:id="@+id/imageView" />
 
-        <!-- Email Label -->
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/thirty"
-            android:text="@string/email" />
-
+        <!-- Email -->
         <EditText
             android:id="@+id/loginEmail"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_grey"
+            android:background="@drawable/edittext_bottom_line"
+            android:paddingLeft="4dp"
+            android:hint="@string/email"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_marginBottom="30dp"
             android:height="@dimen/input_height" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dip"
-            android:text="@string/pwd" />
-
+        <!-- Password -->
         <EditText
             android:id="@+id/loginPassword"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/light_grey"
-            android:height="@dimen/input_height"
-            android:inputType="textPassword"
-            android:padding="8dp"/>
+            android:background="@drawable/edittext_bottom_line"
+            android:padding="8dp"
+            android:fontFamily="sans-serif"
+            android:hint="@string/password"
+            android:layout_marginBottom="@dimen/fifty"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:inputType="textPassword" />
 
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dip"
-            android:background="@drawable/radius_button"
             android:text="@string/login"
-            android:textColor="#fff"
+            android:background="@color/dark_red"
+            android:textColor="@color/white"
             android:layout_gravity="center_horizontal"
-            android:width="200dp" />
+            android:width="@dimen/submit_button_width" />
 
-        <!-- Link to Login screen -->
+        <!-- Link to register screen -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/register_link_message"
+            android:text="@string/loginLinkMessage"
             android:id="@+id/register_link"
-            android:textColor="@color/green"
+            android:textColor="@color/white"
+            android:layout_marginTop="@dimen/thirty"
+            android:layout_marginBottom="@dimen/twenty"
             android:layout_gravity="center_horizontal" />
 
     </LinearLayout>

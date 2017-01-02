@@ -6,21 +6,18 @@
     <string name="register">Register</string>
 
     <!-- Menu -->
-    <string name="create_list">Créer une liste de course</string>
-    <string name="view_lists">Voir les listes de courses</string>
+    <string name="createList">Créer une liste de course</string>
+    <string name="viewLists">Voir les listes de courses</string>
 
     <!-- Login/Subscribe -->
     <string name="name">Name</string>
     <string name="firstName">Firstname</string>
     <string name="email">Email</string>
-    <string name="pwd">Password</string>
+    <string name="password">Password</string>
     <string name="btnLogin">Login</string>
-    <string name="enterName">Enter your name</string>
-    <string name="enterFirstName">Enter your firstname</string>
-    <string name="enterEmail">Enter your email</string>
-    <string name="enterPassword">Enter a password</string>
-    <string name="register_link_message">Still have an account ?</string>
-    <string name="login_link_message">Not registered yet ?</string>
+    <string name="registerLinkMessage">Still have an account ?</string>
+    <string name="loginLinkMessage">Not registered yet ?</string>
 
+    <string name="welcomeMessage">Welcome back </string>
 
 </resources>

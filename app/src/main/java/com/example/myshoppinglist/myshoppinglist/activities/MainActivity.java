@@ -13,18 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.example.myshoppinglist.myshoppinglist.R;
 import com.example.myshoppinglist.myshoppinglist.others.HttpUtility;
+import com.example.myshoppinglist.myshoppinglist.others.Utility;
 
+import org.json.JSONException;
 import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import javax.net.ssl.HttpsURLConnection;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -73,38 +65,67 @@ public class MainActivity extends AppCompatActivity {
 
     private class AsyncRegister extends AsyncTask<String, String, String> {
 
+        private ProgressDialog pDialog;
+
         @Override
         protected void onPreExecute() {
+            super.onPreExecute();
+
+            pDialog = new ProgressDialog(MainActivity.this, R.style.MyCustomAlertDialog);
+            pDialog.setMessage("Loading...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+            pDialog.show();
         }
 
         @Override
         protected String doInBackground(String... params) {
-            try {
 
+            try {
                 String url = "http://appspaces.fr/esgi/shopping_list/account/subscribe.php?email=" + params[0] + "&password=" + params[1] + "&firstname=" + params[2] + "&lastname=" + params[3] + "";
 
                 HttpUtility.sendGetRequest(url);
 
                 int responseCode = HttpUtility.getResponseCode();
-                String reponseCode1 = String.valueOf(responseCode);
-
-                Log.d("responseCode : ", reponseCode1);
 
                 if(responseCode == 200) {
                     String br = HttpUtility.readMultipleLines();
                     return br;
                 } else {
-                    return new String("false : " + responseCode);
+                    return "false : " + responseCode;
                 }
-            }
-            catch(Exception e) {
-                return new String("Exception: " + e.getMessage());
+            }  catch(Exception e) {
+                return "Exception: " + e.getMessage();
             }
         }
 
         @Override
-        protected void onPostExecute(String result) {
-            Toast.makeText(getApplicationContext(), result, Toast.LENGTH_LONG).show();
+        protected void onPostExecute(String httpResponseMsg) {
+
+            if (pDialog.isShowing()) {
+                pDialog.dismiss();
+            }
+
+            super.onPostExecute(httpResponseMsg);
+
+            try {
+                JSONObject jsonData = new JSONObject(httpResponseMsg);
+                String resultCode = jsonData.getString("code");
+
+                if(resultCode.contentEquals("0")) {
+                    finish();
+                    Toast.makeText(MainActivity.this, "Thanks for registering. You can now log in to Shoppy !", Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                } else if(resultCode.contentEquals("2")) {
+                    Toast.makeText(MainActivity.this, "Email already used. Please use another or try to login.", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(MainActivity.this, httpResponseMsg, Toast.LENGTH_LONG).show();
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

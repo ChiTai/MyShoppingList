@@ -1,7 +1,6 @@
 package com.example.myshoppinglist.myshoppinglist.others;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.io.InputStreamReader;
 import java.io.IOException;
@@ -25,6 +24,7 @@ public class HttpUtility {
         httpConn.setRequestMethod("GET");
         httpConn.setDoInput(true);
         httpConn.setDoOutput(true);
+
 
         httpConn.connect();
 

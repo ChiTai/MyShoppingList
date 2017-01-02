@@ -1,16 +1,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/view_action"
+        android:id="@+id/view_lists"
         android:icon="@mipmap/ic_list"
-        android:title="@string/create_list"
+        android:title="@string/createList"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/create_action"
+        android:id="@+id/create_list"
         android:icon="@mipmap/ic_create"
-        android:title="@string/view_lists"
+        android:title="@string/viewLists"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:showAsAction="ifRoom" />
 
