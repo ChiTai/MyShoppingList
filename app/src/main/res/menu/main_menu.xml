@@ -1,14 +1,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <item
-        android:id="@+id/view_lists"
+        android:id="@+id/viewLists"
         android:icon="@mipmap/ic_list"
         android:title="@string/createList"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/create_list"
+        android:id="@+id/createList"
         android:icon="@mipmap/ic_create"
         android:title="@string/viewLists"
         xmlns:app="http://schemas.android.com/apk/res-auto"

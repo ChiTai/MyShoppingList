@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.example.myshoppinglist.myshoppinglist.R;
 import com.example.myshoppinglist.myshoppinglist.others.HttpUtility;
+import com.example.myshoppinglist.myshoppinglist.others.SessionManager;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,27 +29,37 @@ import java.net.URL;
 public class LoginActivity extends AppCompatActivity {
 
     private TextView register;
-    private EditText email;
-    private EditText password;
+    private EditText userEmail;
+    private EditText userPassword;
     private Button loginButton;
+
+    SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login);
 
-        email = (EditText) findViewById(R.id.loginEmail);
-        password = (EditText) findViewById(R.id.loginPassword);
+        session = new SessionManager(getApplicationContext());
+
+        Toast.makeText(getApplicationContext(), "User Login Status: " + session.isLoggedIn(), Toast.LENGTH_LONG).show();
+
+        userEmail = (EditText) findViewById(R.id.loginEmail);
+        userPassword = (EditText) findViewById(R.id.loginPassword);
         register = (TextView) findViewById(R.id.register_link);
         loginButton = (Button) findViewById(R.id.btnLogin);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String loginEmail = email.getText().toString();
-                final String loginPassword = password.getText().toString();
+                final String loginEmail = userEmail.getText().toString();
+                final String loginPassword = userPassword.getText().toString();
 
-                new AsyncLogin().execute(loginEmail, loginPassword);
+                if(loginEmail.trim().length() > 0 && loginPassword.trim().length() > 0) {
+                    new AsyncLogin().execute(loginEmail, loginPassword);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Error when logging in...", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -104,8 +115,6 @@ public class LoginActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = getSharedPreferences(logPreference, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
-            String userMail = email.getText().toString();
-
             // If progressDialog is showing, we dismiss it
             if (pDialog.isShowing()) {
                 pDialog.dismiss();
@@ -123,9 +132,10 @@ public class LoginActivity extends AppCompatActivity {
                 if(resultCode.contentEquals("0")) {
                     finish();
 
-                    // Get the token
                     String token = resultMessage.getString("token");
-                    String firstname = resultMessage.getString("firstname");
+                    String email = resultMessage.getString("email");
+
+                    session.createLoginSession(email, token);
 
                     // And then put the token inside a sharedPreferences
                     editor.putString("token", token);
@@ -133,10 +143,7 @@ public class LoginActivity extends AppCompatActivity {
                     editor.commit();
 
                     // If everything OK, redirect to the Home Activity (user logged successful)
-                    Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                    intent.setAction(Intent.ACTION_SEND);
-                    intent.putExtra(Intent.EXTRA_TEXT, firstname);
-                    intent.setType("text/plain");
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
 
                 } else if(resultCode.contentEquals("3")) { // If user credentials are not recognised

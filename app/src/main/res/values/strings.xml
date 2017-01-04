@@ -18,6 +18,12 @@
     <string name="registerLinkMessage">Still have an account ?</string>
     <string name="loginLinkMessage">Not registered yet ?</string>
 
+    <!-- Shopping list name -->
+    <string name="listName">Name</string>
+    <string name="createListButton">Create my list</string>
+    <string name="myShoppingLists">My shopping lists</string>
+
+    <!-- Others -->
     <string name="welcomeMessage">Welcome back </string>
 
 </resources>

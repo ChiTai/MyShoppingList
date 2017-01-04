@@ -5,13 +5,23 @@
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
 
+    <!-- Email Label -->
     <TextView
+        android:id="@+id/lblEmail"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_gravity="fill_vertical"
-        android:layout_marginTop="20pt"
-        android:gravity="center_horizontal"
-        android:text="Welcome !"
-        android:textSize="25dip" />
+        android:layout_height="wrap_content"/>
+
+    <!-- Token Label -->
+    <TextView
+        android:id="@+id/lblToken"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Déconnexion" />
+
 
 </RelativeLayout>
