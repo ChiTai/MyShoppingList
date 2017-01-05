@@ -6,8 +6,9 @@
     <string name="register">Register</string>
 
     <!-- Menu -->
-    <string name="createList">Créer une liste de course</string>
-    <string name="viewLists">Voir les listes de courses</string>
+    <string name="createList">Create shopping list</string>
+    <string name="viewLists">View my shopping lists</string>
+    <string name="logout">Logout</string>
 
     <!-- Login/Subscribe -->
     <string name="name">Name</string>
@@ -25,5 +26,6 @@
 
     <!-- Others -->
     <string name="welcomeMessage">Welcome back </string>
+
 
 </resources>
