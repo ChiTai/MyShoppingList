@@ -1,5 +1,11 @@
 package com.example.myshoppinglist.myshoppinglist.models;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 /**
  * Created by ameliebarre1 on 05/01/2017.
  */
@@ -11,6 +17,8 @@ public class User {
     private String email;
     private String token;
 
+    public User() {}
+
     public User(String firstname, String lastname, String email, String token){
         this.firstname = firstname;
         this.lastname = lastname;
@@ -19,7 +27,7 @@ public class User {
     }
 
     public String getFirstname() {
-        return firstname;
+        return this.firstname;
     }
 
     public void setFirstname(String firstname) {
@@ -27,7 +35,7 @@ public class User {
     }
 
     public String getLastname() {
-        return lastname;
+        return this.lastname;
     }
 
     public void setLastname(String lastname) {
@@ -35,7 +43,7 @@ public class User {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -43,10 +51,8 @@ public class User {
     }
 
     public String getToken() {
-        return token;
+        return this.token;
     }
 
-    public void setToken(String token) {
-        this.token = token;
-    }
+    public void setToken(String token) { this.token = token; }
 }

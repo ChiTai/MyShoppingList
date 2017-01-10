@@ -18,7 +18,7 @@ public enum ResultCode {
     private final int code;
     private final String description;
 
-    private ResultCode(int code, String description) {
+    ResultCode(int code, String description) {
         this.code = code;
         this.description = description;
     }

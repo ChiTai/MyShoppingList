@@ -12,8 +12,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myshoppinglist.myshoppinglist.R;
+import com.example.myshoppinglist.myshoppinglist.models.ResultCode;
+import com.example.myshoppinglist.myshoppinglist.models.User;
 import com.example.myshoppinglist.myshoppinglist.others.HttpUtility;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -110,10 +113,14 @@ public class RegisterActivity extends AppCompatActivity {
 
             try {
                 JSONObject jsonData = new JSONObject(httpResponseMsg);
+                JSONObject resultMessage = jsonData.getJSONObject("result");
+
+                // Get the result code
                 String resultCode = jsonData.getString("code");
 
                 if(resultCode.contentEquals("0")) {
                     finish();
+
                     Toast.makeText(RegisterActivity.this, "Thanks for registering. You can now log in to Shoppy !", Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                     startActivity(intent);

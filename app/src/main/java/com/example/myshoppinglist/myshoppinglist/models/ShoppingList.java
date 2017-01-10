@@ -1,5 +1,10 @@
 package com.example.myshoppinglist.myshoppinglist.models;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -8,16 +13,20 @@ import java.util.Date;
 
 public class ShoppingList {
 
-    private int id;
-    private String name;
-    private Date created_date;
-    private boolean completed;
+    public int id;
+    public String name;
+    public Date created_date;
+    public boolean completed;
 
     public ShoppingList(int id, String name, Date created_date, boolean completed){
         this.id = id;
         this.name = name;
         this.created_date = created_date;
         this.completed = completed;
+    }
+
+    public ShoppingList(String name){
+        this.name = name;
     }
 
     public int getId() {

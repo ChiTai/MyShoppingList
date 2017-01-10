@@ -33,9 +33,6 @@ public class CreateListActivity extends AppCompatActivity {
 
     private EditText listName;
     private Button createListButton;
-    private String TAG = CreateListActivity.class.getSimpleName();
-    private ListView lv;
-    ArrayList<HashMap<String, String>> shoppingList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +51,6 @@ public class CreateListActivity extends AppCompatActivity {
                 final String logPreference = "preferences";
                 final SharedPreferences sharedPreferences = getSharedPreferences(logPreference, Context.MODE_PRIVATE);
                 final String token = sharedPreferences.getString("token", "");
-
-                shoppingList = new ArrayList<>();
-
-                lv = (ListView) findViewById(R.id.list);
 
                 new AsyncShoppingList().execute(token, myList);
             }
@@ -112,20 +105,13 @@ public class CreateListActivity extends AppCompatActivity {
             try {
                 JSONObject jsonData = new JSONObject(httpResponseMsg);
 
-                JSONObject resultMessage = jsonData.getJSONObject("result");
-
                 // Get the result code
                 String resultCode = jsonData.getString("code");
-
-                String name = resultMessage.getString("name");
 
                 if (resultCode.contentEquals("0")) {
                     finish();
 
-                    Intent intent = new Intent(CreateListActivity.this, HomeActivity.class);
-                    intent.setAction(Intent.ACTION_SEND);
-                    intent.putExtra("EXTRA_LIST_NAME", name);
-                    intent.setType("text/plain");
+                    Intent intent = new Intent(CreateListActivity.this, MainActivity.class);
                     startActivity(intent);
 
                 } else if (resultCode.contentEquals("1")) { // If user credentials are not recognised
