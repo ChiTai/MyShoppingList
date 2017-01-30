@@ -20,8 +20,16 @@
         android:paddingLeft="4dp"
         android:textColor="@color/black"
         android:textColorHint="@color/black"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="@dimen/ten"
         android:height="@dimen/input_height" />
+
+    <TextView
+        android:id="@+id/emptyListName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/twenty"
+        android:textColor="@color/dark_red"
+        android:textSize="15dp" />
 
     <Button
         android:id="@+id/createList"

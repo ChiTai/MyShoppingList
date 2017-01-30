@@ -2,6 +2,7 @@ package com.example.myshoppinglist.myshoppinglist.activities;
 
 import com.example.myshoppinglist.myshoppinglist.R;
 import com.example.myshoppinglist.myshoppinglist.others.HttpUtility;
+import com.example.myshoppinglist.myshoppinglist.others.URL;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -17,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -45,14 +47,24 @@ public class CreateListActivity extends AppCompatActivity {
         createListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String myList = listName.getText().toString();
+                if(!validate()) {
+                    onCreateFailed();
+                } else {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            String myList = listName.getText().toString();
+                            myList = myList.replace(" ", "+");
 
-                // Get the token from the sharedPreferences in LoginActivity
-                final String logPreference = "preferences";
-                final SharedPreferences sharedPreferences = getSharedPreferences(logPreference, Context.MODE_PRIVATE);
-                final String token = sharedPreferences.getString("token", "");
+                            // Get the token from the sharedPreferences in LoginActivity
+                            final String logPreference = "preferences";
+                            final SharedPreferences sharedPreferences = getSharedPreferences(logPreference, Context.MODE_PRIVATE);
+                            final String token = sharedPreferences.getString("token", "");
 
-                new AsyncShoppingList().execute(token, myList);
+                            new AsyncShoppingList().execute(token, myList);
+                        }
+                    });
+                }
             }
         });
     }
@@ -63,6 +75,7 @@ public class CreateListActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
+
             super.onPreExecute();
 
             pDialog = new ProgressDialog(CreateListActivity.this, R.style.MyCustomAlertDialog);
@@ -76,7 +89,7 @@ public class CreateListActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... params) {
             try {
-                String url = "http://appspaces.fr/esgi/shopping_list/shopping_list/create.php?token=" + params[0] + "&name=" + params[1] + "";
+                String url = URL.CREATE_SHOPPING_LIST_URL + "?token=" + params[0] + "&name=" + params[1] + "";
                 HttpUtility.sendGetRequest(url);
 
                 int responseCode = HttpUtility.getResponseCode();
@@ -106,25 +119,39 @@ public class CreateListActivity extends AppCompatActivity {
                 JSONObject jsonData = new JSONObject(httpResponseMsg);
 
                 // Get the result code
-                String resultCode = jsonData.getString("code");
+                int resultCode = jsonData.getInt("code");
 
-                if (resultCode.contentEquals("0")) {
-                    finish();
+                if (resultCode == 0) {
 
                     Intent intent = new Intent(CreateListActivity.this, MainActivity.class);
                     startActivity(intent);
-
-                } else if (resultCode.contentEquals("1")) { // If user credentials are not recognised
-                    Toast.makeText(CreateListActivity.this, "Missing required parameters.", Toast.LENGTH_LONG).show();
-                } else if (resultCode.contentEquals("4")) {
-                    Toast.makeText(CreateListActivity.this, "Wrong token.", Toast.LENGTH_LONG).show();
-                }else {
+                } else {
                     Toast.makeText(CreateListActivity.this, httpResponseMsg, Toast.LENGTH_LONG).show();
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void onCreateFailed() {
+        createListButton.setEnabled(true);
+    }
+
+    public boolean validate() {
+        boolean valid = true;
+
+        String list = listName.getText().toString();
+
+        if (list.isEmpty()) {
+            TextView checkPassword = (TextView)findViewById(R.id.emptyListName);
+            checkPassword.setText(getString(R.string.emptyListName));
+            valid = false;
+        } else {
+            listName.setError(null);
+        }
+
+        return valid;
     }
 
 }

@@ -3,9 +3,13 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="input_price">200dp</dimen>
     <dimen name="input_height">35dp</dimen>
     <dimen name="submit_button_width">150dp</dimen>
 
+    <dimen name="title">15dp</dimen>
+
+    <dimen name="five">5dp</dimen>
     <dimen name="ten">10dp</dimen>
     <dimen name="twenty">20dp</dimen>
     <dimen name="thirty">30dp</dimen>

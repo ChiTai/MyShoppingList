@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyShoppingList</string>
+    <string name="app_name">Shoppy</string>
 
     <!-- Title -->
     <string name="login">Login</string>
@@ -22,13 +22,34 @@
     <!-- Shopping list -->
     <string name="listName">Name</string>
     <string name="listDate">YYYY/MM/DD</string>
+    <string name="listId">ID </string>
     <string name="createListButton">Create my list</string>
-    <string name="updateListButton">Update my list</string>
+    <string name="updateListButton">Edit my list</string>
+    <string name="deleteListButton">Delete my list</string>
     <string name="myShoppingLists">My shopping lists</string>
     <string name="createdAt">Created the </string>
+    <string name="noList">No lists created for the moment.</string>
+    <string name="createAList">Create one.</string>
+
+    <!-- Product -->
+    <string name="productName">Name</string>
+    <string name="productPrice">Price</string>
+    <string name="productQuantity">Quantity</string>
+    <string name="createProductButton">Add a new product</string>
+    <string name="myProducts">My products</string>
+    <string name="addMyProduct">Add my product</string>
+    <string name="updateProductButton">Edit my product</string>
+    <string name="deleteProduct">Delete my product</string>
+    <string name="quantity">Quantity</string>
+    <string name="price">Price</string>
 
     <!-- Others -->
     <string name="welcomeMessage">Welcome back </string>
 
+    <!-- Form errors -->
+    <string name="emptyEmail">Enter a valid email address</string>
+    <string name="emptyPassword">Please, enter password</string>
+    <string name="emptyProductName">Please, enter a name for the product</string>
+    <string name="emptyListName">Please, enter a name for the list</string>
 
 </resources>

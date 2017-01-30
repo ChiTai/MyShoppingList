@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/twenty">
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/productName"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"/>
+
+        <EditText
+            android:id="@+id/myProduct"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/black_bottom_line"
+            android:paddingLeft="4dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:height="@dimen/input_height" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/productPrice"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"/>
+
+        <EditText
+            android:id="@+id/myProductPrice"
+            android:layout_width="@dimen/input_price"
+            android:layout_height="@dimen/input_height"
+            android:background="@drawable/black_bottom_line"
+            android:paddingLeft="4dp"
+            android:inputType="numberDecimal|numberSigned"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:height="@dimen/input_height" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/productQuantity"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"/>
+
+        <EditText
+            android:id="@+id/myProductQuantity"
+            android:layout_width="@dimen/input_price"
+            android:layout_height="@dimen/input_height"
+            android:background="@drawable/black_bottom_line"
+            android:paddingLeft="4dp"
+            android:inputType="numberDecimal"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:height="@dimen/input_height" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/createProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/red"
+        android:paddingLeft="@dimen/twenty"
+        android:paddingRight="@dimen/twenty"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:text="@string/addMyProduct"/>
+
+</LinearLayout>

@@ -12,11 +12,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myshoppinglist.myshoppinglist.R;
-import com.example.myshoppinglist.myshoppinglist.models.ResultCode;
-import com.example.myshoppinglist.myshoppinglist.models.User;
 import com.example.myshoppinglist.myshoppinglist.others.HttpUtility;
-
-import org.json.JSONArray;
+import com.example.myshoppinglist.myshoppinglist.others.URL;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -47,12 +44,17 @@ public class RegisterActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String registerName = name.getText().toString();
-                final String registerFirstName = firstname.getText().toString();
-                final String registerEmail = email.getText().toString();
-                final String registerPassword = password.getText().toString();
+            final String registerName = name.getText().toString();
+            final String registerFirstName = firstname.getText().toString();
+            final String registerEmail = email.getText().toString();
+            final String registerPassword = password.getText().toString();
 
-                new AsyncRegister().execute(registerEmail, registerPassword, registerFirstName, registerName);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    new AsyncRegister().execute(registerEmail, registerPassword, registerFirstName, registerName);
+                }
+            });
             }
         });
 
@@ -85,7 +87,7 @@ public class RegisterActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
 
             try {
-                String url = "http://appspaces.fr/esgi/shopping_list/account/subscribe.php?email=" + params[0] + "&password=" + params[1] + "&firstname=" + params[2] + "&lastname=" + params[3] + "";
+                String url = URL.REGISTER_URL + "?email=" + params[0] + "&password=" + params[1] + "&firstname=" + params[2] + "&lastname=" + params[3] + "";
 
                 HttpUtility.sendGetRequest(url);
 
@@ -103,7 +105,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String httpResponseMsg) {
+        protected void onPostExecute(final String httpResponseMsg) {
 
             if (pDialog.isShowing()) {
                 pDialog.dismiss();
@@ -113,21 +115,26 @@ public class RegisterActivity extends AppCompatActivity {
 
             try {
                 JSONObject jsonData = new JSONObject(httpResponseMsg);
-                JSONObject resultMessage = jsonData.getJSONObject("result");
 
                 // Get the result code
-                String resultCode = jsonData.getString("code");
+                int resultCode = jsonData.getInt("code");
 
-                if(resultCode.contentEquals("0")) {
-                    finish();
-
-                    Toast.makeText(RegisterActivity.this, "Thanks for registering. You can now log in to Shoppy !", Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                } else if(resultCode.contentEquals("2")) {
-                    Toast.makeText(RegisterActivity.this, "Email already used. Please use another or try to login.", Toast.LENGTH_LONG).show();
+                if(resultCode == 0) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(RegisterActivity.this, "Thanks for registering. You can now log in to Shoppy !", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                        }
+                    });
                 } else {
-                    Toast.makeText(RegisterActivity.this, httpResponseMsg, Toast.LENGTH_LONG).show();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(RegisterActivity.this, httpResponseMsg, Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
             } catch (JSONException e) {
                 e.printStackTrace();

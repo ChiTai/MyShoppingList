@@ -15,10 +15,10 @@ public class ShoppingList {
 
     public int id;
     public String name;
-    public Date created_date;
+    public String created_date;
     public boolean completed;
 
-    public ShoppingList(int id, String name, Date created_date, boolean completed){
+    public ShoppingList(int id, String name, String created_date, boolean completed){
         this.id = id;
         this.name = name;
         this.created_date = created_date;
@@ -37,11 +37,11 @@ public class ShoppingList {
         this.id = id;
     }
 
-    public Date getCreated_date() {
+    public String getCreated_date() {
         return created_date;
     }
 
-    public void setCreated_date(Date created_date) {
+    public void setCreated_date(String created_date) {
         this.created_date = created_date;
     }
 

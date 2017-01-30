@@ -1,37 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="@dimen/twenty">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/updateListSection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/listName"
-        android:textColor="@color/black"
-        android:textSize="@dimen/twenty"/>
+        android:orientation="vertical"
+        android:padding="@dimen/twenty">
 
-    <EditText
-        android:id="@+id/updateListField"
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/listName"
+            android:textColor="@color/black"
+            android:textSize="@dimen/twenty"/>
+
+        <EditText
+            android:id="@+id/updateListField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/black_bottom_line"
+            android:paddingLeft="4dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
+            android:layout_marginBottom="30dp"
+            android:height="@dimen/input_height" />
+
+        <Button
+            android:id="@+id/updateList"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/red"
+            android:paddingLeft="@dimen/twenty"
+            android:paddingRight="@dimen/twenty"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="@string/updateListButton"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/addProductSection"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/black_bottom_line"
-        android:paddingLeft="4dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/black"
-        android:layout_marginBottom="30dp"
-        android:height="@dimen/input_height" />
+        android:layout_marginBottom="@dimen/twenty"
+        android:layout_below="@+id/updateListSection"
+        android:orientation="horizontal"
+        android:padding="@dimen/ten">
 
-    <Button
-        android:id="@+id/createList"
+        <ImageView
+            android:layout_width="@dimen/thirty"
+            android:layout_height="@dimen/thirty"
+            android:src="@mipmap/ic_add"/>
+
+        <TextView
+            android:id="@+id/addProduct"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/createProductButton"
+            android:layout_marginTop="@dimen/five"
+            android:layout_marginLeft="@dimen/five"
+            android:textStyle="bold"
+            android:textAllCaps="true"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/productLists"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/addProductSection"></ListView>
+
+    <Button
+        android:id="@+id/deleteList"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:background="@color/red"
+        android:textColor="@color/white"
         android:paddingLeft="@dimen/twenty"
         android:paddingRight="@dimen/twenty"
-        android:textColor="@color/white"
         android:textStyle="bold"
-        android:text="@string/updateListButton"/>
+        android:text="@string/deleteListButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
-</LinearLayout>
+</RelativeLayout>

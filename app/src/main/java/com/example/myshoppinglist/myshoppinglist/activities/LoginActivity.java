@@ -7,21 +7,16 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.myshoppinglist.myshoppinglist.R;
 import com.example.myshoppinglist.myshoppinglist.others.HttpUtility;
 import com.example.myshoppinglist.myshoppinglist.others.SessionManager;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.net.URL;
 
 /**
  * Created by ameliebarre1 on 07/12/16.
@@ -52,14 +47,19 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String loginEmail = userEmail.getText().toString();
-                final String loginPassword = userPassword.getText().toString();
+            final String loginName = userEmail.getText().toString();
+            final String loginPassword = userPassword.getText().toString();
 
-                if(loginEmail.trim().length() > 0 && loginPassword.trim().length() > 0) {
-                    new AsyncLogin().execute(loginEmail, loginPassword);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Error when logging in...", Toast.LENGTH_LONG).show();
-                }
+            if(!validate()) {
+                onLoginFailed();
+            } else {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        new AsyncLogin().execute(loginName, loginPassword);
+                    }
+                });
+            }
             }
         });
 
@@ -108,10 +108,9 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         @Override
-        protected void onPostExecute(String httpResponseMsg) {
+        protected void onPostExecute(final String httpResponseMsg) {
 
             final String logPreference = "preferences";
-
             SharedPreferences sharedPreferences = getSharedPreferences(logPreference, Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
 
@@ -127,9 +126,9 @@ public class LoginActivity extends AppCompatActivity {
                 JSONObject resultMessage = jsonData.getJSONObject("result");
 
                 // Get the result code
-                String resultCode = jsonData.getString("code");
+                int resultCode = jsonData.getInt("code");
 
-                if(resultCode.contentEquals("0")) {
+                if(resultCode == 0) {
                     finish();
 
                     String token = resultMessage.getString("token");
@@ -146,14 +145,46 @@ public class LoginActivity extends AppCompatActivity {
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(intent);
 
-                } else if(resultCode.contentEquals("3")) { // If user credentials are not recognised
-                    Toast.makeText(LoginActivity.this, "Login failed, please try again or check your credentials.", Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(LoginActivity.this, httpResponseMsg, Toast.LENGTH_LONG).show();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(LoginActivity.this, httpResponseMsg, Toast.LENGTH_LONG).show();
+                        }
+                    });
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void onLoginFailed() {
+        loginButton.setEnabled(true);
+    }
+
+    public boolean validate() {
+        boolean valid = true;
+
+        String email = userEmail.getText().toString();
+        String password = userPassword.getText().toString();
+
+        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            TextView checkEmail = (TextView)findViewById(R.id.emptyEmail);
+            checkEmail.setText(getString(R.string.emptyEmail));
+            valid = false;
+        } else {
+            userEmail.setError(null);
+        }
+
+        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+            TextView checkPassword = (TextView)findViewById(R.id.emptyPassword);
+            checkPassword.setText(getString(R.string.emptyPassword));
+            valid = false;
+        } else {
+            userPassword.setError(null);
+        }
+
+        return valid;
     }
 }
