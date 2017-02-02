@@ -1,6 +1,7 @@
 package com.example.myshoppinglist.myshoppinglist.activities;
 
 import com.example.myshoppinglist.myshoppinglist.R;
+import com.example.myshoppinglist.myshoppinglist.fragments.MainFragment;
 import com.example.myshoppinglist.myshoppinglist.others.HttpUtility;
 import com.example.myshoppinglist.myshoppinglist.others.SessionManager;
 import com.example.myshoppinglist.myshoppinglist.others.URL;
@@ -155,6 +156,11 @@ public class MainActivity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    getFragmentManager()
+                                            .beginTransaction()
+                                            .add(R.id.list, new MainFragment())
+                                            .commit()
+                                    ;
                                     Intent intent = new Intent(MainActivity.this, EditListActivity.class);
                                     intent.putExtra("LIST_ID", listIdItem);
                                     intent.putExtra("LIST_NAME", listNameItem);
